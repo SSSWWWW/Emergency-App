@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  
+  <ion-footer no-border>
+  <ion-list margin padding lines="none">
+    <!--SpeechText-->
+    <ion-item class="pill">
+      <ion-input [(ngModel)]="speechText" placeholder="Your message..." ></ion-input>
+    </ion-item>
+    <!--Language>
+      <ion-item>
+        <ion-label>Language</ion-label>
+        <ion-select [(ngModel)]="language">
+          <ion-select-option value="en-US">English</ion-select-option>
+          <ion-select-option value="ru-RU">Russian</ion-select-option>
+        </ion-select>
+      </ion-item-->
+      <ion-item>
+        <ion-range min="0" max="10" step="1" [(ngModel)]="talkSpeed">
+          <ion-icon small range-left name="remove"></ion-icon>
+          <ion-icon small range-right name="add"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </ion-list>
+    <div class="space"></div>
+  <div class="pill-outline">
+    <ion-toolbar>
+      <ion-buttons slot="end" margin-horizontal>
+        <ion-button shape="round">
+          <ion-icon name="remove">
+          </ion-icon>
+        </ion-button>
+
+        <ion-button #btn shape="round" (click)="speakText()">
+          <ion-icon name="add">
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <ion-button slot="end" shape="round" (click)="listen()">
+        <ion-icon name="mic">
+        </ion-icon>
+      </ion-button>
+
+      <ion-button slot="end" shape="round" (click)="speakText()">
+        <ion-icon name="play">
+        </ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </div>
+</ion-footer>
+
+
+
+      
+
+
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label>Crear evento de mergencia</ion-label>
+      </ion-list-header>
+      <ion-item href="#">
+        <ion-icon slot="start" color="medium" name="book"></ion-icon>
+        <ion-label>Uber</ion-label>
+      </ion-item>
+      <ion-item href="#">
+        <ion-icon slot="start" color="medium" name="build"></ion-icon>
+        <ion-label>Llamada</ion-label>
+      </ion-item>
+      <ion-item href="#">
+        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
+        <ion-label>Mensaje de whatsapp</ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>
