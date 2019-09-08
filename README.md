@@ -1,4 +1,4 @@
--cd a directorio
+-windows cmd -> cd a directorio
 
 
 -npm install
