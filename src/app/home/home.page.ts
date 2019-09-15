@@ -14,6 +14,12 @@ export class HomePage {
   language: string;
   talkSpeed: number;
 
+  evento: string;
+  checkedUber: boolean;
+  checkedLlamada: boolean ;
+  checkedWA: boolean;
+
+
   constructor(
   private tts: TextToSpeech,
   private sr: SpeechRecognition,
@@ -23,6 +29,39 @@ export class HomePage {
       this.talkSpeed = 1;
   }
 
+
+  getEvent(e) {
+
+
+    if (e.target.value === 'uber') {
+
+      this.evento = e.target.value;
+      this.checkedUber = this.checkedUber ? false : true;
+      this.checkedWA = false;
+      this.checkedLlamada = false;
+
+    }
+
+    if (e.target.value === 'llamada') {
+
+      this.evento = e.target.value;
+      this.checkedLlamada = this.checkedLlamada ? false : true;
+      this.checkedUber = false;
+      this.checkedWA = false;
+
+    }
+
+    if (e.target.value === 'wa') {
+
+      this.evento = e.target.value;
+      this.checkedWA = this.checkedWA ? false : true;
+      this.checkedLlamada = false;
+      this.checkedUber = false;
+    }
+
+    alert('hola ' +  this.evento + ' - cUber: ' + this.checkedUber + ' - cLlamada: ' + this.checkedLlamada + ' - cWA: ' + this.checkedWA);
+ 
+  }
 
 
   ionViewDidLoad(){

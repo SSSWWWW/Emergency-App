@@ -20,17 +20,17 @@
     <ion-item>
         <ion-icon slot="start" color="medium" name="car"></ion-icon>
         <ion-label>Uber </ion-label>
-        <ion-checkbox></ion-checkbox>
+        <ion-checkbox value="uber" (ionChange)="getEvent($event)"></ion-checkbox>
     </ion-item>
     <ion-item>
         <ion-icon slot="start" color="medium" name="call"></ion-icon>
         <ion-label>Llamada</ion-label>
-        <ion-checkbox></ion-checkbox>
+        <ion-checkbox  value="llamada" (ionChange)="getEvent($event)"></ion-checkbox>
     </ion-item>
     <ion-item>
         <ion-icon slot="start" color="medium" name="chatbubbles"></ion-icon>
         <ion-label>Mensaje de Whatsapp</ion-label>
-        <ion-checkbox></ion-checkbox>
+        <ion-checkbox  value="wa" (ionChange)="getEvent($event)"></ion-checkbox>
     </ion-item>
 </ion-list>
 
