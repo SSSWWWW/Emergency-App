@@ -2,3 +2,9 @@
 
 
 -npm install
+
+
+
+-firebase deploy
+-- npm run build
+-- firebase deploy
