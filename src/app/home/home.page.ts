@@ -59,9 +59,17 @@ export class HomePage {
       this.checkedUber = false;
     }
 
-    alert('hola ' +  this.evento + ' - cUber: ' + this.checkedUber + ' - cLlamada: ' + this.checkedLlamada + ' - cWA: ' + this.checkedWA);
- 
+    alert('hola ' +  this.evento + ' - cUber: ' + this.checkedUber + ' - cLlamada: ' + this.checkedLlamada + ' - cWA: ' + this.checkedWA); 
   }
+
+  guardarEvento(){
+
+    alert(this.evento + ' ' + this.speechText );
+
+
+
+  }
+
 
 
   ionViewDidLoad(){
