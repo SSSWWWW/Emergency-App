@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { CrudService } from 'src/app/service/crud.service';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomePage {
 
 
   constructor(
+  private crudService: CrudService,
   private tts: TextToSpeech,
   private sr: SpeechRecognition,
   ) {
@@ -66,6 +68,17 @@ export class HomePage {
 
     alert(this.evento + ' ' + this.speechText );
 
+    let record = {};
+    record['app'] = this.evento;
+    record['comando'] = this.speechText;
+    this.crudService.create_Evento(record).then(resp => {
+      this.evento = '';
+      this.speechText = '';
+      console.log(resp);
+    })
+      .catch(error => {
+        console.log(error);
+      });
 
 
   }

@@ -16,10 +16,10 @@ import { environment } from '../environments/environment';
 import { TextToSpeech, TTSOptions } from "@ionic-native/text-to-speech/ngx";
 import { SpeechRecognition,SpeechRecognitionListeningOptions } from '@ionic-native/speech-recognition/ngx';
 import { Observable, from, defer, of, throwError } from 'rxjs';
-
-
-
-
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { FormsModule } from '@angular/forms';
 
 export class SpeechRecognitionMock extends SpeechRecognition {
 
@@ -110,7 +110,15 @@ export let providers = [
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
+  imports: [
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+  BrowserModule,
+  IonicModule.forRoot(),
+  AppRoutingModule,
+  ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [
     ...providers,
     StatusBar,
