@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { CrudService } from 'src/app/service/crud.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ export class HomePage {
   private crudService: CrudService,
   private tts: TextToSpeech,
   private sr: SpeechRecognition,
+  public alertController: AlertController
   ) {
       this.speechText = '';
       this.language = 'es-CR';
@@ -61,8 +63,19 @@ export class HomePage {
       this.checkedUber = false;
     }
 
-    alert('hola ' +  this.evento + ' - cUber: ' + this.checkedUber + ' - cLlamada: ' + this.checkedLlamada + ' - cWA: ' + this.checkedWA); 
+   // alert('hola ' +  this.evento + ' - cUber: ' + this.checkedUber + ' - cLlamada: ' + this.checkedLlamada + ' - cWA: ' + this.checkedWA);
   }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Mensaje',
+      message: 'Evento creado exitosamente',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
 
   guardarEvento(){
 
@@ -75,6 +88,7 @@ export class HomePage {
       this.evento = '';
       this.speechText = '';
       console.log(resp);
+      this.presentAlert();
     })
       .catch(error => {
         console.log(error);
