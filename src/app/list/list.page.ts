@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/service/crud.service';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class ListPage implements OnInit {
     'build'
   ];
   public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor(private crudService: CrudService) {
+  constructor(private crudService: CrudService,
+  public alertController: AlertController) {
     this.crudService.read_Evento().subscribe(data => {
  
       this.evento = data.map(e => {
@@ -39,6 +41,132 @@ export class ListPage implements OnInit {
  
     });
 
+  }
+
+  editarEvento(evento , comando) {
+
+    if (evento === 'wa') {
+
+      this.formWA(comando);
+
+    }
+
+    if (evento === 'uber') {
+
+      this.formUber(comando);
+    }
+
+    if (evento === 'llamada') {
+
+      this.formLlamada(comando);
+
+    }
+
+  }
+
+
+  async formLlamada(comando) {
+    const alert = await this.alertController.create({
+      message: '<strong> Comando: ' + comando + '</strong>',
+      header: 'Informacion Llamada',
+      inputs: [
+        {
+          name: 'telefono',
+          type: 'text',
+          placeholder: 'Numero telefono'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async formUber(comando) {
+    const alert = await this.alertController.create({
+      message: '<strong> Comando: ' + comando + '</strong>',
+      header: 'Informacion Uber',
+      inputs: [
+        {
+          name: 'direccion',
+          type: 'text',
+          placeholder: 'Direccion uber'
+        },
+        {
+          name: 'Maximo',
+          type: 'text',
+          placeholder: 'Maximo a pagar'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async formWA(comando) {
+    const alert = await this.alertController.create({
+      message: '<strong> Comando: ' + comando + '</strong>',
+      header: 'Informacion WhatsApp',
+      inputs: [
+        {
+          name: 'numero',
+          type: 'text',
+          placeholder: 'Numero Whatsapp'
+        },
+        {
+          name: 'Mensaje',
+          type: 'text',
+          id: 'name2-id',
+          placeholder: 'Mensaje Whatsapp'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   ngOnInit() {

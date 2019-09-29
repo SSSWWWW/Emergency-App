@@ -10,12 +10,22 @@
 </ion-header>
 
 <ion-content>
+  
   <ion-list>
+      <ion-item-divider>
+          <ion-label>
+            Evento
+          </ion-label>
+        </ion-item-divider>
+        
     <ion-item *ngFor="let item of evento">
       {{item.app}}
-      <div class="item-note" slot="end">
+      <div  class="item-note" slot="end">
         {{item.comando}}
       </div>
+      <div class="item-note" slot="end">
+          <ion-button color="tertiary" (click)="editarEvento(item.app, item.comando)">Editar</ion-button>
+        </div>
     </ion-item>
   </ion-list>
   <!--
