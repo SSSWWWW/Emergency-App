@@ -43,29 +43,49 @@ export class ListPage implements OnInit {
 
   }
 
-  editarEvento(evento , comando) {
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Mensaje',
+      message: 'Evento actualizado exitosamente',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  editarEvento(evento , comando, id) {
 
     if (evento === 'wa') {
 
-      this.formWA(comando);
+      this.formWA(comando , id);
 
     }
 
     if (evento === 'uber') {
 
-      this.formUber(comando);
+      this.formUber(comando , id);
     }
 
     if (evento === 'llamada') {
 
-      this.formLlamada(comando);
+      this.formLlamada(comando , id);
 
     }
 
   }
 
+  editarEventoWA(id, numero, mensaje){
 
-  async formLlamada(comando) {
+    let record = {};
+    record['numero'] = numero;
+    record['mensaje'] = mensaje;
+    this.crudService.update_Evento(id, record);
+    this.presentAlert();
+
+  }
+
+
+  async formLlamada(comando , id) {
     const alert = await this.alertController.create({
       message: '<strong> Comando: ' + comando + '</strong>',
       header: 'Informacion Llamada',
@@ -96,7 +116,7 @@ export class ListPage implements OnInit {
     await alert.present();
   }
 
-  async formUber(comando) {
+  async formUber(comando, id) {
     const alert = await this.alertController.create({
       message: '<strong> Comando: ' + comando + '</strong>',
       header: 'Informacion Uber',
@@ -132,7 +152,7 @@ export class ListPage implements OnInit {
     await alert.present();
   }
 
-  async formWA(comando) {
+  async formWA(comando , id) {
     const alert = await this.alertController.create({
       message: '<strong> Comando: ' + comando + '</strong>',
       header: 'Informacion WhatsApp',
@@ -141,9 +161,10 @@ export class ListPage implements OnInit {
           name: 'numero',
           type: 'text',
           placeholder: 'Numero Whatsapp'
+
         },
         {
-          name: 'Mensaje',
+          name: 'mensaje',
           type: 'text',
           id: 'name2-id',
           placeholder: 'Mensaje Whatsapp'
@@ -154,13 +175,16 @@ export class ListPage implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: () => {
+          handler: data => {
             console.log('Confirm Cancel');
           }
         }, {
           text: 'Ok',
-          handler: () => {
+          handler: (alertData) => {
             console.log('Confirm Ok');
+            console.log(alertData.numero , ' ' , alertData.mensaje , ' ' , id);
+            this.editarEventoWA(id, alertData.numero, alertData.mensaje);
+
           }
         }
       ]
