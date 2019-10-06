@@ -35,6 +35,8 @@ export class ListPage implements OnInit {
           isEdit: false,
           app: e.payload.doc.data()['app'],
           comando: e.payload.doc.data()['comando'],
+          mensaje: e.payload.doc.data()['mensaje'],
+          numero: e.payload.doc.data()['numero'],
         };
       })
       console.log(this.evento);
@@ -53,11 +55,11 @@ export class ListPage implements OnInit {
     await alert.present();
   }
 
-  editarEvento(evento , comando, id) {
+  editarEvento(evento , comando, id , numero, mensaje) {
 
     if (evento === 'wa') {
 
-      this.formWA(comando , id);
+      this.formWA(comando , id , numero , mensaje);
 
     }
 
@@ -152,22 +154,25 @@ export class ListPage implements OnInit {
     await alert.present();
   }
 
-  async formWA(comando , id) {
+  async formWA(comando , id , numero , mensaje) {
     const alert = await this.alertController.create({
-      message: '<strong> Comando: ' + comando + '</strong>',
+      message: '<strong> Comando: ' + comando + '</strong> <br>' +
+      '<strong> Mensaje: ' + mensaje + '</strong> <br>' +
+      '<strong> Numero: ' + numero + '</strong>',
       header: 'Informacion WhatsApp',
       inputs: [
         {
+          label: 'Numero',
           name: 'numero',
           type: 'text',
-          placeholder: 'Numero Whatsapp'
+          placeholder: 'Numero',
 
         },
         {
           name: 'mensaje',
           type: 'text',
           id: 'name2-id',
-          placeholder: 'Mensaje Whatsapp'
+          placeholder: 'Mensaje',
         }
       ],
       buttons: [
