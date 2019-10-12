@@ -48,7 +48,15 @@ export class HomePage {
         };
       })
       const comando = this.speechText;
-      console.log(evento.find(x => x.comando === comando));
+      const ev = evento.find(x => x.comando === comando); 
+      console.log(ev);
+
+      if (ev.app === 'wa') {
+
+        window.open('https://api.whatsapp.com/send?phone=506' + ev.numero + '&text=%20' + ev.mensaje);
+
+      }
+
  
     });
   }
@@ -150,7 +158,8 @@ export class HomePage {
 
 
 
-  listen(){
+  listen() {
+    let element: HTMLElement = document.getElementById('comand') as HTMLElement;
     try {
       const SpeechRecognition = (<any>window).SpeechRecognition
       || (<any>window).webkitSpeechRecognition
@@ -163,6 +172,8 @@ export class HomePage {
 
       sr.onresult = async (event) => {
         this.speechText = await event.results[0][0].transcript;
+        console.log(this.speechText);
+        element.click();
         //console.log(sr.onresult());
         //return of()
         sr.stop();
