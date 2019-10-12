@@ -32,6 +32,11 @@
         <ion-label>Mensaje de Whatsapp</ion-label>
         <ion-checkbox  value="wa" (ionChange)="getEvent($event)"></ion-checkbox>
     </ion-item>
+    <ion-item>
+      <ion-icon slot="start" color="medium" name="alert"></ion-icon>
+      <ion-label>Escuchar evento!</ion-label>
+      <ion-checkbox  value="wa" (ionChange)="escucharEvento()"></ion-checkbox>
+  </ion-item>
 </ion-list>
 
  

@@ -33,6 +33,25 @@ export class HomePage {
       this.talkSpeed = 1;
   }
 
+  escucharEvento() {
+
+    this.crudService.read_Evento().subscribe(data => {
+ 
+      const evento = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          app: e.payload.doc.data()['app'],
+          comando: e.payload.doc.data()['comando'],
+          mensaje: e.payload.doc.data()['mensaje'],
+          numero: e.payload.doc.data()['numero'],
+        };
+      })
+      const comando = this.speechText;
+      console.log(evento.find(x => x.comando === comando));
+ 
+    });
+  }
 
   getEvent(e) {
 
