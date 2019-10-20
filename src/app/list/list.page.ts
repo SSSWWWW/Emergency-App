@@ -70,7 +70,7 @@ export class ListPage implements OnInit {
 
     if (evento === 'llamada') {
 
-      this.formLlamada(comando , id);
+      this.formLlamada(comando , id , numero);
 
     }
 
@@ -86,10 +86,20 @@ export class ListPage implements OnInit {
 
   }
 
+  editarEventoLlamada(id, numero){
 
-  async formLlamada(comando , id) {
+    let record = {};
+    record['numero'] = numero;
+    this.crudService.update_Evento(id, record);
+    this.presentAlert();
+
+  }
+
+
+  async formLlamada(comando , id , numero) {
     const alert = await this.alertController.create({
-      message: '<strong> Comando: ' + comando + '</strong>',
+      message: '<strong> Comando: ' + comando + '</strong> <br>' +
+      '<strong> Numero: ' + numero + '</strong>',
       header: 'Informacion Llamada',
       inputs: [
         {
@@ -103,13 +113,16 @@ export class ListPage implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: () => {
+          handler: data => {
             console.log('Confirm Cancel');
           }
         }, {
           text: 'Ok',
-          handler: () => {
+          handler: (alertData) => {
             console.log('Confirm Ok');
+            console.log(alertData.numero , id);
+            this.editarEventoLlamada(id, alertData.telefono);
+
           }
         }
       ]

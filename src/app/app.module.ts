@@ -13,13 +13,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-import { TextToSpeech, TTSOptions } from "@ionic-native/text-to-speech/ngx";
+import { TextToSpeech, TTSOptions } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition,SpeechRecognitionListeningOptions } from '@ionic-native/speech-recognition/ngx';
 import { Observable, from, defer, of, throwError } from 'rxjs';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 
 export class SpeechRecognitionMock extends SpeechRecognition {
 
@@ -98,9 +100,10 @@ export let speechRecognitionFactory = () => {
 
 
 
+
 export let providers = [
   { provide: TextToSpeech, useFactory: textToSpeechFactory },
-  { provide: SpeechRecognition, useFactory: speechRecognitionFactory },
+  { provide: SpeechRecognition, useFactory: speechRecognitionFactory }
 ]
 
 
@@ -123,7 +126,9 @@ export let providers = [
     ...providers,
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    CallNumber
+
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@ import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { CrudService } from 'src/app/service/crud.service';
 import { AlertController } from '@ionic/angular';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,7 @@ export class HomePage {
   private crudService: CrudService,
   private tts: TextToSpeech,
   private sr: SpeechRecognition,
+  private callNumber: CallNumber,
   public alertController: AlertController
   ) {
       this.speechText = '';
@@ -54,6 +56,14 @@ export class HomePage {
       if (ev.app === 'wa') {
 
         window.open('https://api.whatsapp.com/send?phone=506' + ev.numero + '&text=%20' + ev.mensaje);
+
+      }
+
+      if (ev.app === 'llamada') {
+
+        this.callNumber.callNumber(ev.numero, true)
+  .then(res => console.log('Launched dialer!', res))
+  .catch(err => console.log('Error launching dialer', err));
 
       }
 
