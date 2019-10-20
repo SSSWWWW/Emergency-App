@@ -61,12 +61,11 @@ export class HomePage {
 
       if (ev.app === 'llamada') {
 
-        this.callNumber.callNumber(ev.numero, true)
-  .then(res => console.log('Launched dialer!', res))
-  .catch(err => console.log('Error launching dialer', err));
+        var tel = ev.numero;
 
+        window.open('tel:'+ ev.numero  +"'", '_system', 'location=yes')
+        
       }
-
  
     });
   }
