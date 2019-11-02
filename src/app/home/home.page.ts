@@ -69,7 +69,9 @@ export class HomePage {
 
       if (ev.app === 'uber') {
 
-        window.open('https://m.uber.com/ul/?action=setPickup&_ga=2.57162220.755806724.1572129170-1417898792.1572129170#');
+        var tel = ev.numero;
+
+        window.open('uber://?action=setPickup&pickup');
         
       }
  

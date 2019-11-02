@@ -9,6 +9,7 @@
     <access origin="mailto:" launch-external="yes"/>
     <access origin="uber:*" launch-external="yes"/>
     <allow-intent href="uber:*" />
+    <allow-intent href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
