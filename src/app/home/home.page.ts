@@ -69,14 +69,8 @@ export class HomePage {
 
       if (ev.app === 'uber') {
 
-       const link = 'https://m.uber.com/ul/?action=setPickup&_ga=2.57162220.755806724.1572129170-1417898792.1572129170#';
-       const element = document.createElement('p');
-       element.innerHTML = link;
-       element.setAttribute('id', 'uberlink');
-       document.body.appendChild(element);
-
-      document.getElementById('uberlink').click();
-
+        window.open('https://m.uber.com/ul/?action=setPickup&_ga=2.57162220.755806724.1572129170-1417898792.1572129170#');
+        
       }
  
     });
