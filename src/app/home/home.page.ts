@@ -75,7 +75,7 @@ export class HomePage {
   
 
 
-        window.open('uber://?action=setPickup&dropoff[formatted_address]=' + ev.direccion + '&pickup[formatted_address]=Heredia');
+        window.open('uber://?action=setPickup&client_id=sbouUcKZ8dNyeyemLU0ltFLHdqYOEpJ6&dropoff[formatted_address]=' + ev.direccion + '&pickup[formatted_address]=Heredia');
 
       }
  
