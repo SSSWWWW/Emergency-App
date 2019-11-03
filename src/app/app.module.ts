@@ -21,7 +21,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-import { NativeGeocoder} from '@ionic-native/native-geocoder/ngx';
 
 
 
@@ -127,7 +126,6 @@ export let providers = [
   providers: [
     ...providers,
     StatusBar,
-    NativeGeocoder,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     CallNumber

@@ -5,8 +5,6 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { CrudService } from 'src/app/service/crud.service';
 import { AlertController } from '@ionic/angular';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-
 
 @Component({
   selector: 'app-home',
@@ -30,7 +28,6 @@ export class HomePage {
   private tts: TextToSpeech,
   private sr: SpeechRecognition,
   private callNumber: CallNumber,
-  private nativeGeocoder: NativeGeocoder,
   public alertController: AlertController
 
   ) {
@@ -75,25 +72,10 @@ export class HomePage {
 
       if (ev.app === 'uber') {
 
-        let options: NativeGeocoderOptions = {
-          useLocale: true,
-          maxResults: 5
-      };
-
-      let lat;
-      let lon;
-
-      this.nativeGeocoder.forwardGeocode(ev.direccion, options)
-  .then((result: NativeGeocoderResult[]) => lat = result[0].latitude)
-  .catch((error: any) => console.log(error));
-
-  this.nativeGeocoder.forwardGeocode(ev.direccion, options)
-  .then((result: NativeGeocoderResult[]) => lon = result[0].longitude)
-  .catch((error: any) => console.log(error));
+  
 
 
-
-        window.open('uber://?action=setPickup&pickup[latitude]=' + lat + '&pickup[longitude]=' + lon);
+        window.open('uber://?action=setPickup&pickup[latitude]=' + '10.0062284' + '&pickup[longitude]=' + '-84.1419108');
 
       }
  
