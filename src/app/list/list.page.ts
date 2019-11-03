@@ -37,6 +37,8 @@ export class ListPage implements OnInit {
           comando: e.payload.doc.data()['comando'],
           mensaje: e.payload.doc.data()['mensaje'],
           numero: e.payload.doc.data()['numero'],
+          direccion: e.payload.doc.data()['direccion'],
+          maximo: e.payload.doc.data()['maximo'],
         };
       })
       console.log(this.evento);
@@ -55,7 +57,7 @@ export class ListPage implements OnInit {
     await alert.present();
   }
 
-  editarEvento(evento , comando, id , numero, mensaje) {
+  editarEvento(evento , comando, id , numero, mensaje, direccion, maximo) {
 
     if (evento === 'wa') {
 
@@ -65,7 +67,7 @@ export class ListPage implements OnInit {
 
     if (evento === 'uber') {
 
-      this.formUber(comando , id);
+      this.formUber(comando , id, direccion, maximo);
     }
 
     if (evento === 'llamada') {
@@ -95,6 +97,15 @@ export class ListPage implements OnInit {
 
   }
 
+  editarEventoUber(id, direccion, maximo){
+
+    let record = {};
+    record['direccion'] = direccion;
+    record['maximo'] = maximo;
+    this.crudService.update_Evento(id, record);
+    this.presentAlert();
+
+  }
 
   async formLlamada(comando , id , numero) {
     const alert = await this.alertController.create({
@@ -131,9 +142,11 @@ export class ListPage implements OnInit {
     await alert.present();
   }
 
-  async formUber(comando, id) {
+  async formUber(comando, id, direccion, maximo) {
     const alert = await this.alertController.create({
-      message: '<strong> Comando: ' + comando + '</strong>',
+      message: '<strong> Comando: ' + comando + '</strong><br>' +
+      '<strong> Direccion : ' + direccion + '<br>' +
+      '<strong> Maximo a pagar: ' + maximo,
       header: 'Informacion Uber',
       inputs: [
         {
@@ -142,7 +155,7 @@ export class ListPage implements OnInit {
           placeholder: 'Direccion uber'
         },
         {
-          name: 'Maximo',
+          name: 'maximo',
           type: 'text',
           placeholder: 'Maximo a pagar'
         }
@@ -157,8 +170,10 @@ export class ListPage implements OnInit {
           }
         }, {
           text: 'Ok',
-          handler: () => {
+          handler: (alertData) => {
             console.log('Confirm Ok');
+            this.editarEventoUber(id, alertData.direccion, alertData.maximo);
+
           }
         }
       ]
