@@ -75,7 +75,7 @@ export class HomePage {
   
 
 
-        window.open('uber://?action=setPickup&pickup[latitude]=' + '10.0062284' + '&pickup[longitude]=' + '-84.1419108');
+        window.open('uber://?action=setPickup&dropoff[formatted_address]=' + ev.direccion);
 
       }
  
