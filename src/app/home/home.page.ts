@@ -72,10 +72,10 @@ export class HomePage {
 
       if (ev.app === 'uber') {
 
-  
+       // window.open('uber://?action=setPickup&client_id=sbouUcKZ8dNyeyemLU0ltFLHdqYOEpJ6&dropoff[formatted_address]=' + ev.direccion + '&pickup[formatted_address]=Heredia');
 
+       window.open('uber://?action=setPickup&client_id=sbouUcKZ8dNyeyemLU0ltFLHdqYOEpJ6&pickup=my_location&dropoff[formatted_address]=Heredia%2C%20Costa%20Rica&dropoff[latitude]=9.998141&dropoff[longitude]=-84.119764');
 
-        window.open('uber://?action=setPickup&client_id=sbouUcKZ8dNyeyemLU0ltFLHdqYOEpJ6&dropoff[formatted_address]=' + ev.direccion + '&pickup[formatted_address]=Heredia');
 
       }
  
