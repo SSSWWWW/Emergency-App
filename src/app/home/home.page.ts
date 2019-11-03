@@ -80,12 +80,21 @@ export class HomePage {
           maxResults: 5
       };
 
+      let lat;
+      let lon;
+
       this.nativeGeocoder.forwardGeocode(ev.direccion, options)
-  .then((result: NativeGeocoderResult[]) => alert('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude))
+  .then((result: NativeGeocoderResult[]) => lat = result[0].latitude)
   .catch((error: any) => console.log(error));
 
-        window.open('uber://?action=setPickup&pickup');
-        
+  this.nativeGeocoder.forwardGeocode(ev.direccion, options)
+  .then((result: NativeGeocoderResult[]) => lon = result[0].longitude)
+  .catch((error: any) => console.log(error));
+
+
+
+        window.open('uber://?action=setPickup&pickup[latitude]=' + lat + '&pickup[longitude]=' + lon);
+
       }
  
     });
