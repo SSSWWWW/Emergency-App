@@ -74,7 +74,7 @@ export class HomePage {
 
        // window.open('uber://?action=setPickup&client_id=sbouUcKZ8dNyeyemLU0ltFLHdqYOEpJ6&dropoff[formatted_address]=' + ev.direccion + '&pickup[formatted_address]=Heredia');
 
-       window.open('uber://?action=setPickup&client_id=sbouUcKZ8dNyeyemLU0ltFLHdqYOEpJ6&pickup=my_location&dropoff[formatted_address]=San%20Jos%C3%A9%2C%20Costa%20Rica&dropoff[latitude]=9.928069&dropoff[longitude]=-84.090725');
+       window.open('uber://?action=setPickup&client_id=sbouUcKZ8dNyeyemLU0ltFLHdqYOEpJ6&pickup=my_location&dropoff[formatted_address]='+ ev.direccion);
 
 
       }
@@ -127,7 +127,7 @@ export class HomePage {
 
   guardarEvento(){
 
-    alert(this.evento + ' ' + this.speechText );
+  //  alert(this.evento + ' ' + this.speechText );
 
     let record = {};
     record['app'] = this.evento;
